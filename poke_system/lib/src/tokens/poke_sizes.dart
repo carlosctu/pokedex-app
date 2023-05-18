@@ -16,10 +16,10 @@ class InnerShadow {
   });
 }
 
-class PokedexSizes {
+class PokeSizes {
   final DropShadow dropShadow;
   final InnerShadow innerShadow;
-  PokedexSizes._({
+  PokeSizes._({
     required this.dropShadow,
     required this.innerShadow,
   });
@@ -29,7 +29,7 @@ class PokedexSizes {
     return dp * devicePixelRatio;
   }
 
-  PokedexSizes sizes(BuildContext context) => PokedexSizes._(
+  PokeSizes sizes(BuildContext context) => PokeSizes._(
         dropShadow: DropShadow(
           x20: dpToPx(context, 2),
           x60: dpToPx(context, 6),

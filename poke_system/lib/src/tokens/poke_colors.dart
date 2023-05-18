@@ -1,20 +1,19 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter_app/tokens/context_group.dart';
+import 'context_group.dart';
 
-class PokedexColors {
+class PokeColors {
   final IdentityGroup identityGroup;
   final PokedexGreyScaleGroup greyScaleGroup;
   final PokemonContextGroup pokemonContextGroup;
 
-  const PokedexColors._({
+  const PokeColors._({
     required this.identityGroup,
     required this.greyScaleGroup,
     required this.pokemonContextGroup,
   });
 
-  static PokedexColors contexts = const PokedexColors._(
+  static PokeColors contexts = const PokeColors._(
     identityGroup: IdentityGroup(
       primary: Color(0xFFDC0A2D),
     ),

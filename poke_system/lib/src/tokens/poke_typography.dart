@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PokedexTypography {
+class PokeTypography {
   final TextStyle h1;
   final TextStyle s1;
   final TextStyle s2;
@@ -15,7 +15,7 @@ class PokedexTypography {
   /// s = subtitle
   /// c = caption
   /// b = body
-  const PokedexTypography._({
+  const PokeTypography._({
     required this.h1,
     required this.s1,
     required this.s2,
@@ -26,7 +26,7 @@ class PokedexTypography {
     required this.b3,
   });
 
-  factory PokedexTypography(Color textColor) => PokedexTypography._(
+  factory PokeTypography(Color textColor) => PokeTypography._(
         h1: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,

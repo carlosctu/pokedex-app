@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter_app/tokens/tokens.dart';
+import 'package:poke_system/poke_system.dart';
 
-class PokedexThemeData {
-  final PokedexColors colors;
-  final PokedexTypography typography;
+class PokeThemeData {
+  final PokeColors colors;
+  final PokeTypography typography;
   final ThemeData themeData;
-  PokedexThemeData._({
+  PokeThemeData._({
     required this.colors,
     required this.typography,
     required this.themeData,
   });
 
-  factory PokedexThemeData() {
-    final colors = PokedexColors.contexts;
-    final typography = PokedexTypography(colors.greyScaleGroup.dark);
+  factory PokeThemeData() {
+    final colors = PokeColors.contexts;
+    final typography = PokeTypography(colors.greyScaleGroup.dark);
     final themeData = _getCustomTheme(colors, typography);
 
-    return PokedexThemeData._(
+    return PokeThemeData._(
       colors: colors,
       typography: typography,
       themeData: themeData,
@@ -25,8 +25,8 @@ class PokedexThemeData {
 }
 
 ThemeData _getCustomTheme(
-  PokedexColors colors,
-  PokedexTypography typography,
+  PokeColors colors,
+  PokeTypography typography,
 ) =>
     ThemeData(
       appBarTheme: AppBarTheme(color: colors.identityGroup.primary),
