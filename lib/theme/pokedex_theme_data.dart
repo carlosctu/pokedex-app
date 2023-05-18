@@ -29,6 +29,7 @@ ThemeData _getCustomTheme(
   PokedexTypography typography,
 ) =>
     ThemeData(
+      appBarTheme: AppBarTheme(color: colors.identityGroup.primary),
       primaryColor: colors.identityGroup.primary,
       textTheme: TextTheme(
         displayLarge: typography.h1,

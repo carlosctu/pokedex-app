@@ -23,6 +23,15 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final theme = PokedexThemeData();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text(
+          'Texto',
+          style: theme.typography.b1,
+        ),
+      ),
+    );
   }
 }
