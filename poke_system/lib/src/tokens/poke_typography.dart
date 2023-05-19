@@ -29,46 +29,57 @@ class PokeTypography {
   factory PokeTypography(Color textColor) => PokeTypography._(
         h1: TextStyle(
           fontSize: 24,
+          height: 1.3,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
           color: textColor,
         ),
         s1: TextStyle(
           fontSize: 14,
+          height: 1.15,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
           color: textColor,
         ),
         s2: TextStyle(
           fontSize: 12,
+          height: 1.3,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
           color: textColor,
         ),
         s3: TextStyle(
           fontSize: 10,
+          height: 1.6,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
           color: textColor,
         ),
         c1: TextStyle(
           fontSize: 8,
+          height: 1.5,
           fontStyle: FontStyle.normal,
           color: textColor,
         ),
         b1: TextStyle(
           fontSize: 14,
+          height: 1.15,
           fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.normal,
           color: textColor,
         ),
         b2: TextStyle(
           fontSize: 12,
+          height: 1.3,
           fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.normal,
           color: textColor,
         ),
         b3: TextStyle(
           fontSize: 10,
+          height: 1.6,
           fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.normal,
           color: textColor,
         ),
       );
