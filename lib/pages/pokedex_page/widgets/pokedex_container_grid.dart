@@ -17,13 +17,19 @@ class PokedexContainerGrid extends StatelessWidget {
         color: Colors.white,
       ),
       child: GridView.count(
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
-        crossAxisCount: 3,
-        children: const [
-          PokemonContainerGrid(),
-        ],
-      ),
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+          crossAxisCount: 3,
+          children: List.generate(
+            20,
+            (index) => PokemonContainerGrid(
+              pokemonName: "Bulbasaur",
+              pokemonNumber: "#$index",
+              pokemonImage: "assets/png/pokemon.png",
+            ),
+          ).toList()),
     );
   }
 }
