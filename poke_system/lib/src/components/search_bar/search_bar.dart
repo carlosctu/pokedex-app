@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:poke_system/poke_system.dart';
 
@@ -58,7 +57,6 @@ class _SearchBarState extends State<SearchBar> {
             _SearchButton(onPressed: onSearchPressed),
             _InputField(
               onFocusChange: widget.onSearchChanged,
-              theme: theme,
               onChange: onInputChanged,
               controller: controller,
               focusNode: focusNode,
@@ -78,7 +76,6 @@ class _SearchBarState extends State<SearchBar> {
 class _InputField extends StatelessWidget {
   const _InputField({
     required this.onFocusChange,
-    required this.theme,
     required this.onChange,
     required this.controller,
     required this.focusNode,
@@ -86,7 +83,6 @@ class _InputField extends StatelessWidget {
   });
 
   final Function(bool value)? onFocusChange;
-  final PokeThemeData theme;
   final Function(String? value) onChange;
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -94,6 +90,8 @@ class _InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = PokeThemeData();
+
     return Expanded(
       child: Focus(
         onFocusChange: onFocusChange,
