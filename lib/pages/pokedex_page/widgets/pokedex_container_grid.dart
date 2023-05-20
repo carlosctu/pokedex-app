@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_response.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/pokedex_repository.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokemon_container_grid.dart';
 
-class PokedexContainerGrid extends StatelessWidget {
+class PokedexContainerGrid extends StatefulWidget {
   const PokedexContainerGrid({super.key});
+
+  @override
+  State<PokedexContainerGrid> createState() => _PokedexContainerGridState();
+}
+
+class _PokedexContainerGridState extends State<PokedexContainerGrid> {
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  Future<PokedexResponse> getData() async {
+    return PokedexRepository().getPokedexList();
+  }
 
   @override
   Widget build(BuildContext context) {
