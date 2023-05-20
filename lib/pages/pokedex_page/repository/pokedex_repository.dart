@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_list_response.dart';
 import 'package:dio/dio.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_response.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
 
 class PokedexRepository {
   final _dio = Dio();
 
-  Future<PokedexResponse> getPokedexList() async {
-    const offset = '10';
-    const limit = '10';
+  Future<PokedexResponse> getPokedexList({
+    required String offset,
+    required String limit,
+  }) async {
     final queryParameters = {
       "offset": offset,
       "limit": limit,
@@ -30,7 +32,7 @@ class PokedexRepository {
       );
 
       return PokedexResponse(
-        count: pokedexList. count,
+        count: pokedexList.count,
         next: pokedexList.next,
         pokemonDetails:
             pokemonModel.whereType<PokemonDetailsResponse>().toList(),

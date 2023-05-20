@@ -40,7 +40,7 @@ class PokemonContainerGrid extends StatelessWidget {
           const _SecondaryContainerBackground(),
           Align(
             alignment: AlignmentDirectional.center,
-            child: Image.asset(
+            child: Image.network(
               pokemonImage,
               height: 72,
             ),

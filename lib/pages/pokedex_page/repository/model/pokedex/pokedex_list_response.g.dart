@@ -12,7 +12,7 @@ PokedexListResponse _$PokedexListResponseFromJson(Map<String, dynamic> json) =>
       next: json['next'] as String,
       results: (json['results'] as List<dynamic>)
           .map(
-              (e) => PokemonDetailsResponse.fromJson(e as Map<String, dynamic>))
+              (e) => PokedexDetailsResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -24,15 +24,15 @@ Map<String, dynamic> _$PokedexListResponseToJson(
       'results': instance.results,
     };
 
-PokemonDetailsResponse _$PokemonDetailsResponseFromJson(
+PokedexDetailsResponse _$PokedexDetailsResponseFromJson(
         Map<String, dynamic> json) =>
-    PokemonDetailsResponse(
+    PokedexDetailsResponse(
       name: json['name'] as String?,
       url: json['url'] as String?,
     );
 
-Map<String, dynamic> _$PokemonDetailsResponseToJson(
-        PokemonDetailsResponse instance) =>
+Map<String, dynamic> _$PokedexDetailsResponseToJson(
+        PokedexDetailsResponse instance) =>
     <String, dynamic>{
       'name': instance.name,
       'url': instance.url,

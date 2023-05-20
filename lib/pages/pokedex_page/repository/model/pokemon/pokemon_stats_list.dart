@@ -5,12 +5,12 @@ part 'pokemon_stats_list.g.dart';
 @JsonSerializable()
 class PokemonStatsList {
   @JsonKey(name: 'base_stat')
-  final int baseStat;
-  final int effort;
+  final int? baseStat;
+  final int? effort;
   final PokemonStat stat;
   PokemonStatsList({
-    required this.baseStat,
-    required this.effort,
+    this.baseStat,
+    this.effort,
     required this.stat,
   });
 
@@ -21,11 +21,11 @@ class PokemonStatsList {
 
 @JsonSerializable()
 class PokemonStat {
-  final String name;
-  final String url;
+  final String? name;
+  final String? url;
   PokemonStat({
-    required this.name,
-    required this.url,
+    this.name,
+    this.url,
   });
 
   factory PokemonStat.fromJson(Map<String, dynamic> json) =>

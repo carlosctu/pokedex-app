@@ -8,8 +8,10 @@ part of 'pokemon_types_list.dart';
 
 PokemonTypesList _$PokemonTypesListFromJson(Map<String, dynamic> json) =>
     PokemonTypesList(
-      slot: json['slot'] as int,
-      type: PokemonType.fromJson(json['type'] as Map<String, dynamic>),
+      slot: json['slot'] as int?,
+      type: json['type'] == null
+          ? null
+          : PokemonType.fromJson(json['type'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PokemonTypesListToJson(PokemonTypesList instance) =>
@@ -19,8 +21,8 @@ Map<String, dynamic> _$PokemonTypesListToJson(PokemonTypesList instance) =>
     };
 
 PokemonType _$PokemonTypeFromJson(Map<String, dynamic> json) => PokemonType(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$PokemonTypeToJson(PokemonType instance) =>

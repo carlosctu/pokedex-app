@@ -4,11 +4,11 @@ part 'pokemon_types_list.g.dart';
 
 @JsonSerializable()
 class PokemonTypesList {
-  final int slot;
-  final PokemonType type;
+  final int? slot;
+  final PokemonType? type;
   PokemonTypesList({
-    required this.slot,
-    required this.type,
+    this.slot,
+    this.type,
   });
 
   factory PokemonTypesList.fromJson(Map<String, dynamic> json) =>
@@ -18,11 +18,11 @@ class PokemonTypesList {
 
 @JsonSerializable()
 class PokemonType {
-  final String name;
-  final String url;
+  final String? name;
+  final String? url;
   PokemonType({
-    required this.name,
-    required this.url,
+    this.name,
+    this.url,
   });
 
   factory PokemonType.fromJson(Map<String, dynamic> json) =>

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_response.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokemon_container_grid.dart';
+import 'package:pokedex_flutter_app/shared/utils/string_extensions.dart';
 
 class PokedexContainerGrid extends StatelessWidget {
-  const PokedexContainerGrid({super.key});
+  final PokedexResponse data;
+  const PokedexContainerGrid({
+    super.key,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +22,24 @@ class PokedexContainerGrid extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         color: Colors.white,
       ),
-      child: GridView.count(
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
           crossAxisCount: 3,
-          children: List.generate(
-            20,
-            (index) => PokemonContainerGrid(
-              pokemonName: "Bulbasaur",
-              pokemonNumber: "#$index",
-              pokemonImage: "assets/png/pokemon.png",
-            ),
-          ).toList()),
+        ),
+        itemCount: data.pokemonDetails.length,
+        itemBuilder: (BuildContext context, int index) {
+          final pokemon = data.pokemonDetails[index];
+          return PokemonContainerGrid(
+            pokemonName: pokemon.name.capitalizeFirstLetter(),
+            pokemonNumber: pokemon.id.formatPokemonNumber(),
+            pokemonImage: pokemon.sprites.originalImage!,
+          );
+        },
+      ),
     );
   }
 }

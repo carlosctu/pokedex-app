@@ -50,7 +50,9 @@ class _PokedexPageState extends State<PokedexPage> {
                         if (snapshot.data is PokedexInitialState) {
                           final data = snapshot.data as PokedexInitialState;
                           print(data.data.pokemonDetails);
-                          return const PokedexContainerGrid();
+                          return PokedexContainerGrid(
+                            data: data.data,
+                          );
                         }
                         return const Center(
                           child: CircularProgressIndicator(),

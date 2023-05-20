@@ -8,8 +8,8 @@ part of 'pokemon_stats_list.dart';
 
 PokemonStatsList _$PokemonStatsListFromJson(Map<String, dynamic> json) =>
     PokemonStatsList(
-      baseStat: json['base_stat'] as int,
-      effort: json['effort'] as int,
+      baseStat: json['base_stat'] as int?,
+      effort: json['effort'] as int?,
       stat: PokemonStat.fromJson(json['stat'] as Map<String, dynamic>),
     );
 
@@ -21,8 +21,8 @@ Map<String, dynamic> _$PokemonStatsListToJson(PokemonStatsList instance) =>
     };
 
 PokemonStat _$PokemonStatFromJson(Map<String, dynamic> json) => PokemonStat(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$PokemonStatToJson(PokemonStat instance) =>

@@ -6,7 +6,7 @@ part 'pokedex_list_response.g.dart';
 class PokedexListResponse {
   final int count;
   final String next;
-  final List<PokemonDetailsResponse> results;
+  final List<PokedexDetailsResponse> results;
   PokedexListResponse({
     required this.count,
     required this.next,
@@ -19,15 +19,15 @@ class PokedexListResponse {
 }
 
 @JsonSerializable()
-class PokemonDetailsResponse {
+class PokedexDetailsResponse {
   final String? name;
   final String? url;
-  PokemonDetailsResponse({
+  PokedexDetailsResponse({
     this.name,
     this.url,
   });
 
-  factory PokemonDetailsResponse.fromJson(Map<String, dynamic> json) =>
-      _$PokemonDetailsResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$PokemonDetailsResponseToJson(this);
+  factory PokedexDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      _$PokedexDetailsResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$PokedexDetailsResponseToJson(this);
 }

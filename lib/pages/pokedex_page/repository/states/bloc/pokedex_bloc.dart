@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
   final PokedexRepository _repository;
 
+  String offset = '0';
+  String limit = "15";
+
   PokedexBloc(this._repository) : super(PokedexLoadingState()) {
     on<PokedexEventFetchPokemonList>((event, emit) async {
       await _fetchPokemonList(event, emit);
@@ -17,7 +20,10 @@ class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
     try {
       emit(PokedexLoadingState());
 
-      final result = await _repository.getPokedexList();
+      final result = await _repository.getPokedexList(
+        limit: limit,
+        offset: offset,
+      );
 
       emit(PokedexInitialState(data: result));
     } catch (ex) {
