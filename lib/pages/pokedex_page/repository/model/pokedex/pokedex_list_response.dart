@@ -20,11 +20,11 @@ class PokedexListResponse {
 
 @JsonSerializable()
 class PokemonDetailsResponse {
-  final String name;
-  final String url;
+  final String? name;
+  final String? url;
   PokemonDetailsResponse({
-    required this.name,
-    required this.url,
+    this.name,
+    this.url,
   });
 
   factory PokemonDetailsResponse.fromJson(Map<String, dynamic> json) =>

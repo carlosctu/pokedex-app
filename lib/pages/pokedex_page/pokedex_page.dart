@@ -1,10 +1,31 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_response.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/pokedex_repository.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc_event.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc_state.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokedex_app_bar.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokedex_container_grid.dart';
 
-class PokedexPage extends StatelessWidget {
+class PokedexPage extends StatefulWidget {
   const PokedexPage({super.key});
+
+  @override
+  State<PokedexPage> createState() => _PokedexPageState();
+}
+
+class _PokedexPageState extends State<PokedexPage> {
+  PokedexBloc get pokedexBloc => context.read<PokedexBloc>();
+
+  @override
+  void initState() {
+    pokedexBloc.add(PokedexEventFetchPokemonList());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +33,36 @@ class PokedexPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.colors.identityGroup.primary,
-      body: const SafeArea(
+      body: SafeArea(
         child: CustomScrollView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           slivers: [
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: PokedexAppBar(),
             ),
             SliverFillRemaining(
-              child: PokedexContainerGrid(),
+              child: BlocBuilder<PokedexBloc, PokedexState>(
+                builder: (context, state) {
+                  return StreamBuilder(
+                    stream: pokedexBloc.stream,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        if (snapshot.data is PokedexInitialState) {
+                          final data = snapshot.data as PokedexInitialState;
+                          print(data.data.pokemonDetails);
+                          return const PokedexContainerGrid();
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return const Center(
+                        child: Text('No data'),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ],
         ),

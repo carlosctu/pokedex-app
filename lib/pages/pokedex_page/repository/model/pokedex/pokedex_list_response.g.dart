@@ -27,8 +27,8 @@ Map<String, dynamic> _$PokedexListResponseToJson(
 PokemonDetailsResponse _$PokemonDetailsResponseFromJson(
         Map<String, dynamic> json) =>
     PokemonDetailsResponse(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$PokemonDetailsResponseToJson(
