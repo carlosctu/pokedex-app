@@ -30,12 +30,14 @@ class PokedexRepository {
           }
         }).toList(),
       );
+      
+      final pokemonDetailsList =
+          pokemonModel.whereType<PokemonDetailsResponse>().toList();
 
       return PokedexResponse(
         count: pokedexList.count,
         next: pokedexList.next,
-        pokemonDetails:
-            pokemonModel.whereType<PokemonDetailsResponse>().toList(),
+        pokemonDetails: pokemonDetailsList,
       );
     } catch (ex) {
       throw Exception(ex);

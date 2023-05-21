@@ -1,13 +1,16 @@
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_response.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
 
 abstract class PokedexState {}
 
 class PokedexInitialState extends PokedexState {
-  final PokedexResponse data;
+  final List<PokemonDetailsResponse> data;
   PokedexInitialState({required this.data});
 }
 
-class PokedexLoadingState extends PokedexState {}
+class PokedexLoadingState extends PokedexState {
+  final List<PokemonDetailsResponse> data;
+  PokedexLoadingState(this.data);
+}
 
 class PokedexErrorState extends PokedexState {
   final Object? exception;

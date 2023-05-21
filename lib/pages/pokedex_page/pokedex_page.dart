@@ -49,14 +49,27 @@ class _PokedexPageState extends State<PokedexPage> {
                       if (snapshot.hasData) {
                         if (snapshot.data is PokedexInitialState) {
                           final data = snapshot.data as PokedexInitialState;
-                          print(data.data.pokemonDetails);
                           return PokedexContainerGrid(
                             data: data.data,
+                            statusWidget: const SizedBox.shrink(),
+                            isLoading: false,
                           );
                         }
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        if (snapshot.data is PokedexLoadingState) {
+                          final data = snapshot.data as PokedexLoadingState;
+                          if (data.data.isNotEmpty) {
+                            return PokedexContainerGrid(
+                              data: data.data,
+                              statusWidget: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                              isLoading: true,
+                            );
+                          }
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
                       }
                       return const Center(
                         child: Text('No data'),
