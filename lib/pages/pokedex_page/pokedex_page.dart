@@ -6,6 +6,7 @@ import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.d
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_state.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokedex_app_bar.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokedex_container_grid.dart';
+import 'package:pokedex_flutter_app/shared/ui/skeletons/pokedex_loading_skeleton.dart';
 
 class PokedexPage extends StatefulWidget {
   const PokedexPage({super.key});
@@ -39,30 +40,50 @@ class _PokedexPageState extends State<PokedexPage> {
             SliverFillRemaining(
               child: BlocBuilder<PokedexBloc, PokedexState>(
                 builder: (context, state) {
-                  return StreamBuilder(
-                    stream: pokedexBloc.stream,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final data = snapshot.data;
-                        if (data is PokedexInitialState) {
-                          return PokedexContainerGrid(
-                            data: data.data,
-                            statusWidget: const SizedBox.shrink(),
-                            isLoading: false,
-                          );
-                        } else if (data is PokedexLoadingState) {
-                          final isLoading = data.data.isNotEmpty;
-                          return PokedexContainerGrid(
-                            data: data.data,
-                            statusWidget: const ProgressLoader(),
-                            isLoading: isLoading,
-                          );
+                  return Container(
+                    margin: const EdgeInsets.fromLTRB(4, 0, 4, 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 24,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                    ),
+                    child: StreamBuilder(
+                      stream: pokedexBloc.stream,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final data = snapshot.data;
+                          if (data is PokedexInitialState) {
+                            return PokedexContainerGrid(
+                              data: data.data,
+                              statusWidget: const SizedBox.shrink(),
+                              isLoading: false,
+                            );
+                          } else if (data is PokedexLoadingState) {
+                            final isLoadingList = data.data.isEmpty;
+                            return isLoadingList
+                                ? const PokedexLoadingSkeleton(
+                                    skeletonItems: 15,
+                                  )
+                                : PokedexContainerGrid(
+                                    data: data.data,
+                                    statusWidget: const PokedexLoadingSkeleton(
+                                      skeletonItems: 6,
+                                    ),
+                                    isLoading: true,
+                                  );
+                          }
                         }
-                      }
-                      return const Center(
-                        child: Text('No data'),
-                      );
-                    },
+                        return Center(
+                          child: Text(
+                            'No data',
+                            style: theme.typography.h1,
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               ),

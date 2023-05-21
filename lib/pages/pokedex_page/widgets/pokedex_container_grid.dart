@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokemon_container_grid.dart';
+import 'package:pokedex_flutter_app/shared/ui/skeletons/pokedex_loading_skeleton.dart';
 import 'package:pokedex_flutter_app/shared/utils/extensions.dart';
 
 class PokedexContainerGrid extends StatefulWidget {
@@ -50,42 +50,32 @@ class _PokedexContainerGridState extends State<PokedexContainerGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(4, 0, 4, 4),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 24,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-      ),
-      child: ListView(
-        controller: scrollController,
-        physics: const BouncingScrollPhysics(),
-        children: [
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              crossAxisCount: 3,
-            ),
-            itemCount: widget.data.length,
-            itemBuilder: (BuildContext context, int index) {
-              final pokemon = widget.data[index];
-              return PokemonContainerGrid(
-                pokemonName: pokemon.name.capitalizeFirstLetter(),
-                pokemonNumber: pokemon.id.formatPokemonNumber(),
-                pokemonImage: pokemon.sprites.originalImage!,
-              );
-            },
+    return ListView(
+      shrinkWrap: true,
+      controller: scrollController,
+      physics: const BouncingScrollPhysics(),
+      children: [
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+            crossAxisCount: 3,
           ),
-          const SizedBox(height: 8),
-          widget.statusWidget,
-        ],
-      ),
+          itemCount: widget.data.length,
+          itemBuilder: (BuildContext context, int index) {
+            final pokemon = widget.data[index];
+            return PokemonContainerGrid(
+              pokemonName: pokemon.name.capitalizeFirstLetter(),
+              pokemonNumber: pokemon.id.formatPokemonNumber(),
+              pokemonImage: pokemon.sprites.originalImage!,
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        widget.statusWidget,
+      ],
     );
   }
 }

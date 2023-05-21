@@ -43,6 +43,14 @@ class PokemonContainerGrid extends StatelessWidget {
             child: Image.network(
               pokemonImage,
               height: 72,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress != null) return child;
+                return Image.asset(
+                  'assets/png/pokemon_skeleton.png',
+                  height: 72,
+                  color: theme.colors.greyScaleGroup.medium.withOpacity(0.5),
+                );
+              },
             ),
           ),
           Container(
