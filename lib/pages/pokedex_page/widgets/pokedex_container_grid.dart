@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex_flutter_app/pages/details_page/pokemon_details_page.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
@@ -65,10 +66,24 @@ class _PokedexContainerGridState extends State<PokedexContainerGrid> {
           itemCount: widget.data.length,
           itemBuilder: (BuildContext context, int index) {
             final pokemon = widget.data[index];
-            return PokemonContainerGrid(
-              pokemonName: pokemon.name.capitalizeFirstLetter(),
-              pokemonNumber: pokemon.id.formatPokemonNumber(),
-              pokemonImage: pokemon.sprites.originalImage!,
+            return GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PokemonDetailsPage(
+                    data: widget.data,
+                    pokemonData: pokemon,
+                  ),
+                ),
+              ),
+              child: Hero(
+                tag: pokemon.id,
+                child: PokemonContainerGrid(
+                  pokemonName: pokemon.name.capitalizeFirstLetter(),
+                  pokemonNumber: pokemon.id.formatPokemonNumber(),
+                  pokemonImage: pokemon.sprites.originalImage!,
+                ),
+              ),
             );
           },
         ),
