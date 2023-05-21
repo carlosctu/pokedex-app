@@ -1,10 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_response.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/pokedex_repository.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_state.dart';
@@ -47,27 +43,19 @@ class _PokedexPageState extends State<PokedexPage> {
                     stream: pokedexBloc.stream,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        if (snapshot.data is PokedexInitialState) {
-                          final data = snapshot.data as PokedexInitialState;
+                        final data = snapshot.data;
+                        if (data is PokedexInitialState) {
                           return PokedexContainerGrid(
                             data: data.data,
                             statusWidget: const SizedBox.shrink(),
                             isLoading: false,
                           );
-                        }
-                        if (snapshot.data is PokedexLoadingState) {
-                          final data = snapshot.data as PokedexLoadingState;
-                          if (data.data.isNotEmpty) {
-                            return PokedexContainerGrid(
-                              data: data.data,
-                              statusWidget: const Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                              isLoading: true,
-                            );
-                          }
-                          return const Center(
-                            child: CircularProgressIndicator(),
+                        } else if (data is PokedexLoadingState) {
+                          final isLoading = data.data.isNotEmpty;
+                          return PokedexContainerGrid(
+                            data: data.data,
+                            statusWidget: const ProgressLoader(),
+                            isLoading: isLoading,
                           );
                         }
                       }
