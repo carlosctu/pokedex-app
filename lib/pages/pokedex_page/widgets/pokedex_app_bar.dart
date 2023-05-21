@@ -64,8 +64,12 @@ class _AppSearchBarState extends State<_AppSearchBar> {
             onSearchChanged: (value) {
               if (value == null || value.isEmpty) {
                 onPokemonSearched('');
+              } else {
+                setState(() {
+                  query = value;
+                  onPokemonSearched(value);
+                });
               }
-              setState(() => query = value ?? '');
             },
             hintText: "Search",
           ),
