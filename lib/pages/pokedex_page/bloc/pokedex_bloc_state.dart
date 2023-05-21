@@ -14,5 +14,9 @@ class PokedexLoadingState extends PokedexState {
 
 class PokedexErrorState extends PokedexState {
   final Object? exception;
-  PokedexErrorState({required this.exception});
+  final List<PokemonDetailsResponse> data;
+  PokedexErrorState({
+    this.exception,
+    required this.data,
+  });
 }

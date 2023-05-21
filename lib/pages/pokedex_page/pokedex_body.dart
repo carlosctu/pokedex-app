@@ -52,17 +52,37 @@ class _PokedexBodyState extends State<PokedexBody> {
                   );
                 } else if (data is PokedexLoadingState) {
                   final isLoadingList = data.data.isEmpty;
-                  return isLoadingList
-                      ? const PokedexLoadingSkeleton(
-                          skeletonItems: 15,
-                        )
-                      : PokedexContainerGrid(
-                          data: data.data,
-                          statusWidget: const ProgressLoader(),
-                          isLoading: true,
-                        );
+                  if (isLoadingList) {
+                    return const PokedexLoadingSkeleton(
+                      skeletonItems: 15,
+                    );
+                  }
+                  return PokedexContainerGrid(
+                    data: data.data,
+                    statusWidget: const ProgressLoader(),
+                    isLoading: true,
+                  );
                 }
               }
+              if (state is PokedexErrorState) {
+                final data = snapshot.data as PokedexErrorState;
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: theme.colors.identityGroup.primary,
+                      showCloseIcon: true,
+                      content: const Text("Please try again, later."),
+                    ),
+                  );
+                });
+
+                return PokedexContainerGrid(
+                  data: data.data,
+                  statusWidget: const SizedBox.shrink(),
+                  isLoading: false,
+                );
+              }
+              print(state);
               return Center(
                 child: Text(
                   'No data',

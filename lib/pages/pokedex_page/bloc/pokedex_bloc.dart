@@ -32,8 +32,8 @@ class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
       if (!isLoading) {
         isLoading = true;
         final result = await _repository.getPokedexList(
-          limit: limit.toString(),
-          offset: offset.toString(),
+          limit: limit,
+          offset: offset,
         );
         list.addAll(result.pokemonDetails);
         offset = limit;
@@ -41,7 +41,7 @@ class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
         emit(PokedexInitialState(data: list));
       }
     } catch (ex) {
-      emit(PokedexErrorState(exception: ex));
+      emit(PokedexErrorState(exception: ex, data: list));
     } finally {
       isLoading = false;
     }
