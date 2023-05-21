@@ -15,6 +15,21 @@ class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
     on<PokedexEventFetchPokemonList>((event, emit) async {
       await _fetchPokemonList(event, emit);
     });
+
+    on<PokedexEventSearchPokemon>((event, emit) async {
+      final query = event.query;
+
+      if (query.isNotEmpty) {
+        final filteredList = list.where(
+          (pokemon) {
+            return pokemon.formattedId == query;
+          },
+        ).toList();
+
+        return emit(PokedexInitialState(data: filteredList));
+      }
+      return emit(PokedexInitialState(data: list));
+    });
   }
 
   Future _fetchPokemonList(

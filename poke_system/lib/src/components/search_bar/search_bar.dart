@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:poke_system/poke_system.dart';
 
 class SearchBar extends StatefulWidget {
-  final Function(bool value)? onSearchChanged;
+  final Function(bool value)? onFocusChanged;
+  final Function(String? value) onSearchChanged;
   final Function(String? value) onSearch;
   final String? hintText;
   const SearchBar({
     super.key,
-    this.onSearchChanged,
+    this.onFocusChanged,
+    required this.onSearchChanged,
     required this.onSearch,
     this.hintText,
   });
@@ -31,7 +33,7 @@ class _SearchBarState extends State<SearchBar> {
 
     onInputChanged(String? value) {
       validateTextInput(value);
-      widget.onSearch.call(value);
+      widget.onSearchChanged.call(value);
     }
 
     onSearchPressed() {
@@ -39,7 +41,7 @@ class _SearchBarState extends State<SearchBar> {
     }
 
     clearInput() {
-      widget.onSearch.call(null);
+      widget.onSearchChanged.call(null);
       controller.clear();
       validateTextInput(null);
     }
@@ -56,7 +58,7 @@ class _SearchBarState extends State<SearchBar> {
           children: [
             _SearchButton(onPressed: onSearchPressed),
             _InputField(
-              onFocusChange: widget.onSearchChanged,
+              onFocusChange: widget.onFocusChanged,
               onChange: onInputChanged,
               controller: controller,
               focusNode: focusNode,

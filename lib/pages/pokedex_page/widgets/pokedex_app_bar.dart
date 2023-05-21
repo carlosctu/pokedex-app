@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc_event.dart';
 
 class PokedexAppBar extends StatelessWidget {
   const PokedexAppBar({super.key});
@@ -15,19 +18,42 @@ class PokedexAppBar extends StatelessWidget {
   }
 }
 
-class _AppSearchBar extends StatelessWidget {
+class _AppSearchBar extends StatefulWidget {
   const _AppSearchBar();
 
   @override
+  State<_AppSearchBar> createState() => _AppSearchBarState();
+}
+
+class _AppSearchBarState extends State<_AppSearchBar> {
+  String query = '';
+  @override
   Widget build(BuildContext context) {
+    final pokedexBloc = context.read<PokedexBloc>();
+
+    void onPokemonSearched(String value) {
+      setState(() {
+        pokedexBloc.add(
+          PokedexEventSearchPokemon(
+            query: value,
+          ),
+        );
+      });
+    }
+
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SearchBar(
-            onSearchChanged: (value) {},
-            onSearch: (value) {},
+            onSearch: (value) => onPokemonSearched(query),
+            onSearchChanged: (value) {
+              if (value == null || value.isEmpty) {
+                onPokemonSearched('');
+              }
+              setState(() => query = value ?? '');
+            },
             hintText: "Search",
           ),
           const SizedBox(width: 16),

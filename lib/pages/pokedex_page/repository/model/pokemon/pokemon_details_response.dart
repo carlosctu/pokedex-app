@@ -4,6 +4,7 @@ import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_sprites.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_stats_list.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_types_list.dart';
+import 'package:pokedex_flutter_app/shared/utils/extensions.dart';
 
 part 'pokemon_details_response.g.dart';
 
@@ -45,6 +46,8 @@ class PokemonDetailsResponse {
   factory PokemonDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$PokemonDetailsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$PokemonDetailsResponseToJson(this);
+
+  String get formattedId => id.formatPokemonNumber();
 }
 
 @JsonSerializable()

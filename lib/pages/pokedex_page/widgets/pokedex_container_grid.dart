@@ -25,7 +25,6 @@ class PokedexContainerGrid extends StatefulWidget {
 class _PokedexContainerGridState extends State<PokedexContainerGrid> {
   PokedexBloc get pokedexBloc => context.read<PokedexBloc>();
   ScrollController scrollController = ScrollController();
-  bool isLoading = false;
 
   @override
   void initState() {
@@ -43,7 +42,6 @@ class _PokedexContainerGridState extends State<PokedexContainerGrid> {
   void _scrollListener() {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      print(widget.isLoading);
       if (!widget.isLoading) {
         context.read<PokedexBloc>().add(PokedexEventFetchPokemonList());
       }
