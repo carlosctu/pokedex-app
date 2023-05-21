@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/pokedex_repository.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
 
 import 'pages/pokedex_page/pokedex_page.dart';
 

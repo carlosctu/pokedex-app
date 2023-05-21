@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/states/bloc/pokedex_bloc_event.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokemon_container_grid.dart';
 import 'package:pokedex_flutter_app/shared/utils/extensions.dart';
 
