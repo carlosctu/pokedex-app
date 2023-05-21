@@ -4,7 +4,6 @@ import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
 import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokemon_container_grid.dart';
-import 'package:pokedex_flutter_app/shared/ui/skeletons/pokedex_loading_skeleton.dart';
 import 'package:pokedex_flutter_app/shared/utils/extensions.dart';
 
 class PokedexContainerGrid extends StatefulWidget {

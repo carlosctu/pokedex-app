@@ -38,21 +38,7 @@ class PokemonContainerGrid extends StatelessWidget {
             ),
           ),
           const _SecondaryContainerBackground(),
-          Align(
-            alignment: AlignmentDirectional.center,
-            child: Image.network(
-              pokemonImage,
-              height: 72,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress != null) return child;
-                return Image.asset(
-                  'assets/png/pokemon_skeleton.png',
-                  height: 72,
-                  color: theme.colors.greyScaleGroup.medium.withOpacity(0.5),
-                );
-              },
-            ),
-          ),
+          PokemonImage(pokemonImage: pokemonImage),
           Container(
             padding: const EdgeInsets.only(bottom: 4),
             alignment: Alignment.bottomCenter,
@@ -62,6 +48,35 @@ class PokemonContainerGrid extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class PokemonImage extends StatelessWidget {
+  final String pokemonImage;
+  const PokemonImage({
+    super.key,
+    required this.pokemonImage,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = PokeThemeData();
+
+    return Align(
+      alignment: AlignmentDirectional.center,
+      child: Image.network(
+        pokemonImage,
+        height: 72,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Image.asset(
+            'assets/png/pokemon_skeleton.png',
+            height: 72,
+            color: theme.colors.greyScaleGroup.medium.withOpacity(0.5),
+          );
+        },
       ),
     );
   }

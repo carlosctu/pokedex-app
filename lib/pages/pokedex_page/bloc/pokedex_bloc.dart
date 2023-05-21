@@ -68,7 +68,7 @@ class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
           case PokedexFilterType.tag:
             return pokemon.formattedId == query;
           case PokedexFilterType.name:
-            return pokemon.name.toLowerCase().startsWith(query);
+            return pokemon.name.toLowerCase().startsWith(query.toLowerCase());
         }
       },
     ).toList();

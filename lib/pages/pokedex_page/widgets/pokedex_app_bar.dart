@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
@@ -78,103 +76,12 @@ class _AppSearchBarState extends State<_AppSearchBar> {
                 context: context,
                 builder: (BuildContext context) {
                   return FilterDialogBox(filterType: filterType);
-                  // return StatefulBuilder(
-                  //   builder: (context, setState) {
-                  //     return AlertDialog(
-                  //       alignment: Alignment.center,
-                  //       insetPadding:
-                  //           const EdgeInsets.symmetric(horizontal: 100),
-                  //       backgroundColor: Colors.transparent,
-                  //       content: Container(
-                  //         height: 160,
-                  //         decoration: BoxDecoration(
-                  //           color: theme.colors.identityGroup.primary,
-                  //           borderRadius: BorderRadius.circular(12),
-                  //         ),
-                  //         child: Column(
-                  //           children: [
-                  //             Padding(
-                  //               padding:
-                  //                   const EdgeInsets.fromLTRB(16, 24, 42, 16),
-                  //               child: Text(
-                  //                 'Sort by:',
-                  //                 style: theme.typography.s1.bold.copyWith(
-                  //                   color: theme.colors.greyScaleGroup.white,
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             Expanded(
-                  //               child: LayoutBuilder(
-                  //                 builder: (_, BoxConstraints constraints) {
-                  //                   return Container(
-                  //                     width: constraints.maxWidth,
-                  //                     margin:
-                  //                         const EdgeInsets.fromLTRB(4, 0, 4, 4),
-                  //                     decoration: BoxDecoration(
-                  //                       color:
-                  //                           theme.colors.greyScaleGroup.white,
-                  //                       borderRadius: BorderRadius.circular(8),
-                  //                     ),
-                  //                     child: Column(
-                  //                       crossAxisAlignment:
-                  //                           CrossAxisAlignment.start,
-                  //                       children: [
-                  //                         Row(
-                  //                           children: [
-                  //                             Radio(
-                  //                               activeColor: theme.colors
-                  //                                   .identityGroup.primary,
-                  //                               value: PokedexFilterType.tag,
-                  //                               onChanged: (value) {
-                  //                                 setState(() {
-                  //                                   filterType = value!;
-                  //                                   Navigator.pop(
-                  //                                       context, filterType);
-                  //                                 });
-                  //                               },
-                  //                               groupValue: filterType,
-                  //                             ),
-                  //                             Text(
-                  //                               'Number',
-                  //                               style: theme.typography.b2,
-                  //                             )
-                  //                           ],
-                  //                         ),
-                  //                         Row(
-                  //                           children: [
-                  //                             Radio(
-                  //                               activeColor: theme.colors
-                  //                                   .identityGroup.primary,
-                  //                               value: PokedexFilterType.name,
-                  //                               onChanged: (value) {
-                  //                                 setState(() {
-                  //                                   filterType = value!;
-                  //                                   Navigator.pop(
-                  //                                       context, filterType);
-                  //                                 });
-                  //                               },
-                  //                               groupValue: filterType,
-                  //                             ),
-                  //                             Text(
-                  //                               'Name',
-                  //                               style: theme.typography.b2,
-                  //                             )
-                  //                           ],
-                  //                         ),
-                  //                       ],
-                  //                     ),
-                  //                   );
-                  //                 },
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  // );
                 },
-              ).then((value) => setState(() => filterType = value));
+              ).then((value) => setState(() {
+                    if (value != null) {
+                      filterType = value;
+                    }
+                  }));
             },
             child: Container(
               alignment: Alignment.center,
