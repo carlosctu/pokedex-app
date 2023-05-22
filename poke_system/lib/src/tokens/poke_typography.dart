@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class PokeTypography {
   final TextStyle h1;
+  final TextStyle h2;
   final TextStyle s1;
   final TextStyle s2;
   final TextStyle s3;
@@ -17,6 +18,7 @@ class PokeTypography {
   /// b = body
   const PokeTypography._({
     required this.h1,
+    required this.h2,
     required this.s1,
     required this.s2,
     required this.s3,
@@ -29,6 +31,13 @@ class PokeTypography {
   factory PokeTypography(Color textColor) => PokeTypography._(
         h1: TextStyle(
           fontSize: 24,
+          height: 1.3,
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.normal,
+          color: textColor,
+        ),
+        h2: TextStyle(
+          fontSize: 16,
           height: 1.3,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
