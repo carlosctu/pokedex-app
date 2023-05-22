@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_state.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokedex_container_grid.dart';
-import 'package:pokedex_flutter_app/shared/ui/skeletons/pokedex_loading_skeleton.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc_event.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc_state.dart';
+import 'package:pokedex_flutter_app/ui/pages/pokedex_page/widgets/pokemon_grid_list.dart';
+import 'package:pokedex_flutter_app/ui/skeletons/pokedex_loading_skeleton.dart';
 
 class PokedexBody extends StatefulWidget {
   const PokedexBody({super.key});
@@ -45,7 +45,7 @@ class _PokedexBodyState extends State<PokedexBody> {
               if (snapshot.hasData) {
                 final data = snapshot.data;
                 if (data is PokedexInitialState) {
-                  return PokedexContainerGrid(
+                  return PokemonGridList(
                     data: data.data,
                     statusWidget: const SizedBox.shrink(),
                     isLoading: false,
@@ -57,7 +57,7 @@ class _PokedexBodyState extends State<PokedexBody> {
                       skeletonItems: 15,
                     );
                   }
-                  return PokedexContainerGrid(
+                  return PokemonGridList(
                     data: data.data,
                     statusWidget: const ProgressLoader(),
                     isLoading: true,
@@ -76,13 +76,12 @@ class _PokedexBodyState extends State<PokedexBody> {
                   );
                 });
 
-                return PokedexContainerGrid(
+                return PokemonGridList(
                   data: data.data,
                   statusWidget: const SizedBox.shrink(),
                   isLoading: false,
                 );
               }
-              print(state);
               return Center(
                 child: Text(
                   'No data',

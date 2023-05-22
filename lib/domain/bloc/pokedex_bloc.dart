@@ -1,8 +1,8 @@
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/pokedex_repository.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex_flutter_app/data/repository/pokedex_repository.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc_event.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc_state.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
 
 class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
   final PokedexRepository _repository;

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:poke_system/poke_system.dart';
 
-class PokemonContainerGrid extends StatelessWidget {
+class PokemonCard extends StatelessWidget {
+  final PokeThemeData theme;
   final String pokemonName;
   final String pokemonNumber;
   final String pokemonImage;
-  const PokemonContainerGrid({
+  const PokemonCard({
     super.key,
-    required this.pokemonName,
     required this.pokemonNumber,
     required this.pokemonImage,
+    required this.theme,
+    required this.pokemonName,
   });
 
   @override
@@ -27,43 +29,29 @@ class PokemonContainerGrid extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Container(
-            padding: const EdgeInsets.only(top: 4, right: 8),
-            alignment: Alignment.topRight,
-            child: Text(
-              pokemonNumber,
-              style: theme.typography.b2.copyWith(
-                color: theme.colors.greyScaleGroup.medium,
-              ),
-            ),
-          ),
-          const _SecondaryContainerBackground(),
-          PokemonImage(pokemonImage: pokemonImage),
-          Container(
-            padding: const EdgeInsets.only(bottom: 4),
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              pokemonName,
-              style: theme.typography.b2,
-            ),
-          ),
+          _buildPokemonNumber(),
+          _buildCardSecondaryBackground(),
+          _buildPokemonImage(),
+          _buildPokemonName(),
         ],
       ),
     );
   }
-}
 
-class PokemonImage extends StatelessWidget {
-  final String pokemonImage;
-  const PokemonImage({
-    super.key,
-    required this.pokemonImage,
-  });
+  Widget _buildPokemonNumber() {
+    return Container(
+      padding: const EdgeInsets.only(top: 4, right: 8),
+      alignment: Alignment.topRight,
+      child: Text(
+        pokemonNumber,
+        style: theme.typography.b2.copyWith(
+          color: theme.colors.greyScaleGroup.medium,
+        ),
+      ),
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = PokeThemeData();
-
+  Widget _buildPokemonImage() {
     return Align(
       alignment: AlignmentDirectional.center,
       child: Image.network(
@@ -80,15 +68,19 @@ class PokemonImage extends StatelessWidget {
       ),
     );
   }
-}
 
-class _SecondaryContainerBackground extends StatelessWidget {
-  const _SecondaryContainerBackground();
+  Widget _buildPokemonName() {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 4),
+      alignment: Alignment.bottomCenter,
+      child: Text(
+        pokemonName,
+        style: theme.typography.b2,
+      ),
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = PokeThemeData();
-
+  Widget _buildCardSecondaryBackground() {
     return Positioned.fill(
       bottom: 0,
       child: FractionallySizedBox(

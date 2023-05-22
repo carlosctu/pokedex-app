@@ -1,10 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_moves_list.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_sprites.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_stats_list.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_types_list.dart';
-import 'package:pokedex_flutter_app/shared/utils/extensions.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_moves_list.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_sprites.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_stats_list.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_types_list.dart';
+import 'package:pokedex_flutter_app/utils/extensions/extensions.dart';
 
 part 'pokemon_details_response.g.dart';
 

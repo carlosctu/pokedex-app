@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
 
 part 'pokedex_response.g.dart';
 

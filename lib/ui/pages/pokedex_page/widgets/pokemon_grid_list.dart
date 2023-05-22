@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokedex_flutter_app/pages/details_page/pokemon_details_page.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc_event.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/widgets/pokemon_container_grid.dart';
-import 'package:pokedex_flutter_app/shared/utils/extensions.dart';
+import 'package:poke_system/poke_system.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc_event.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
+import 'package:pokedex_flutter_app/ui/pages/details_page/pokemon_details_page.dart';
+import 'package:pokedex_flutter_app/ui/pages/pokedex_page/widgets/pokemon_card.dart';
+import 'package:pokedex_flutter_app/utils/extensions/extensions.dart';
 
-class PokedexContainerGrid extends StatefulWidget {
+class PokemonGridList extends StatefulWidget {
   final List<PokemonDetailsResponse> data;
   final Widget statusWidget;
   final bool isLoading;
-  const PokedexContainerGrid({
+  const PokemonGridList({
     Key? key,
     required this.data,
     required this.statusWidget,
@@ -19,10 +20,10 @@ class PokedexContainerGrid extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<PokedexContainerGrid> createState() => _PokedexContainerGridState();
+  State<PokemonGridList> createState() => _PokemonGridListState();
 }
 
-class _PokedexContainerGridState extends State<PokedexContainerGrid> {
+class _PokemonGridListState extends State<PokemonGridList> {
   PokedexBloc get pokedexBloc => context.read<PokedexBloc>();
   ScrollController scrollController = ScrollController();
 
@@ -65,31 +66,41 @@ class _PokedexContainerGridState extends State<PokedexContainerGrid> {
           ),
           itemCount: widget.data.length,
           itemBuilder: (BuildContext context, int index) {
-            final pokemon = widget.data[index];
+            final pokemonDetails = widget.data[index];
             return GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PokemonDetailsPage(
-                    data: widget.data,
-                    pokemonData: pokemon,
-                  ),
-                ),
-              ),
-              child: Hero(
-                tag: pokemon.id,
-                child: PokemonContainerGrid(
-                  pokemonName: pokemon.name.capitalizeFirstLetter(),
-                  pokemonNumber: pokemon.id.formatPokemonNumber(),
-                  pokemonImage: pokemon.sprites.originalImage!,
-                ),
-              ),
+              onTap: () => _navigateToDetailsPage(pokemonDetails.id),
+              child: _buildPokemonCard(pokemonDetails),
             );
           },
         ),
         const SizedBox(height: 8),
         widget.statusWidget,
       ],
+    );
+  }
+
+  Widget _buildPokemonCard(PokemonDetailsResponse pokemonDetails) {
+    final theme = PokeThemeData();
+    return Hero(
+      tag: pokemonDetails.id,
+      child: PokemonCard(
+        theme: theme,
+        pokemonName: pokemonDetails.name.capitalizeFirstLetter(),
+        pokemonNumber: pokemonDetails.id.formatPokemonNumber(),
+        pokemonImage: pokemonDetails.sprites.originalImage!,
+      ),
+    );
+  }
+
+  _navigateToDetailsPage(int pokemonId) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PokemonDetailsPage(
+          data: widget.data,
+          pokemonId: pokemonId - 1,
+        ),
+      ),
     );
   }
 }

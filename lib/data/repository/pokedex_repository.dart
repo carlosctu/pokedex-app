@@ -1,10 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_list_response.dart';
 import 'package:dio/dio.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokedex/pokedex_response.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokedex/pokedex_list_response.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokedex/pokedex_response.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PokedexRepository {

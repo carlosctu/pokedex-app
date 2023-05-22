@@ -1,4 +1,4 @@
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/model/pokemon/pokemon_details_response.dart';
+import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
 
 abstract class PokedexState {}
 

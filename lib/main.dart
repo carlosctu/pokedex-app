@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/repository/pokedex_repository.dart';
-import 'package:pokedex_flutter_app/pages/pokedex_page/bloc/pokedex_bloc.dart';
-
-import 'pages/pokedex_page/pokedex_page.dart';
+import 'package:pokedex_flutter_app/data/repository/pokedex_repository.dart';
+import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/ui/pages/pokedex_page/pokedex_page.dart';
 
 void main() {
   runApp(const MyApp());
