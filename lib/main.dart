@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
 import 'package:pokedex_flutter_app/data/repository/pokedex_repository.dart';
 import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc.dart';
+import 'package:pokedex_flutter_app/routes.dart';
 import 'package:pokedex_flutter_app/ui/pages/pokedex_page/pokedex_page.dart';
 
 void main() {
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
           title: 'Pokedex Flutter App',
           debugShowCheckedModeBanner: false,
           theme: PokeThemeData().themeData,
-          home: const PokedexPage(),
+          initialRoute: PathRoutes.pokedex,
+          onGenerateRoute: onGenerateRoute,
         ),
       ),
     );
