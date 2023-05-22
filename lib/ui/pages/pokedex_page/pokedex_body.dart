@@ -44,9 +44,10 @@ class _PokedexBodyState extends State<PokedexBody> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final data = snapshot.data;
-                if (data is PokedexInitialState) {
+                if (data is PokedexDataState) {
                   return PokemonGridList(
-                    data: data.data,
+                    data: data.pokemonList,
+                    filteredData: data.filteredList ?? [],
                     statusWidget: const SizedBox.shrink(),
                     isLoading: false,
                   );
@@ -59,6 +60,7 @@ class _PokedexBodyState extends State<PokedexBody> {
                   }
                   return PokemonGridList(
                     data: data.data,
+                    filteredData: [],
                     statusWidget: const ProgressLoader(),
                     isLoading: true,
                   );
@@ -78,6 +80,7 @@ class _PokedexBodyState extends State<PokedexBody> {
 
                 return PokemonGridList(
                   data: data.data,
+                  filteredData: [],
                   statusWidget: const SizedBox.shrink(),
                   isLoading: false,
                 );

@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_system/poke_system.dart';
+
 import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc.dart';
 import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc_event.dart';
 import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
-import 'package:pokedex_flutter_app/ui/routes/routes.dart';
 import 'package:pokedex_flutter_app/ui/pages/details_page/arguments/details_page_arguments.dart';
 import 'package:pokedex_flutter_app/ui/pages/details_page/pokemon_details_page.dart';
 import 'package:pokedex_flutter_app/ui/pages/pokedex_page/widgets/pokemon_card.dart';
+import 'package:pokedex_flutter_app/ui/routes/routes.dart';
 import 'package:pokedex_flutter_app/utils/extensions/extensions.dart';
 
 class PokemonGridList extends StatefulWidget {
   final List<PokemonDetailsResponse> data;
+  final List<PokemonDetailsResponse> filteredData;
   final Widget statusWidget;
   final bool isLoading;
   const PokemonGridList({
     Key? key,
     required this.data,
+    required this.filteredData,
     required this.statusWidget,
     required this.isLoading,
   }) : super(key: key);
@@ -66,9 +69,13 @@ class _PokemonGridListState extends State<PokemonGridList> {
             crossAxisSpacing: 8,
             crossAxisCount: 3,
           ),
-          itemCount: widget.data.length,
+          itemCount: widget.filteredData.isNotEmpty
+              ? widget.filteredData.length
+              : widget.data.length,
           itemBuilder: (BuildContext context, int index) {
-            final pokemonDetails = widget.data[index];
+            final pokemonDetails = widget.filteredData.isNotEmpty
+                ? widget.filteredData[index]
+                : widget.data[index];
             return GestureDetector(
               onTap: () => _navigateToDetailsPage(pokemonDetails.id),
               child: _buildPokemonCard(pokemonDetails),

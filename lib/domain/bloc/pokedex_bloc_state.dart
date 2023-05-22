@@ -2,9 +2,13 @@ import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_resp
 
 abstract class PokedexState {}
 
-class PokedexInitialState extends PokedexState {
-  final List<PokemonDetailsResponse> data;
-  PokedexInitialState({required this.data});
+class PokedexDataState extends PokedexState {
+  final List<PokemonDetailsResponse> pokemonList;
+  final List<PokemonDetailsResponse>? filteredList;
+  PokedexDataState({
+    required this.pokemonList,
+    this.filteredList,
+  });
 }
 
 class PokedexLoadingState extends PokedexState {

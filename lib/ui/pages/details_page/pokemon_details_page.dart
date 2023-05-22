@@ -41,6 +41,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
 
     return Scaffold(
       backgroundColor: pokemonColor,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         bottom: false,
         child: Stack(

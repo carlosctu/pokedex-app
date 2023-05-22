@@ -30,15 +30,16 @@ class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
 
     try {
       if (!isLoading) {
-        isLoading = true;
+        print(offset);
         final result = await _repository.getPokedexList(
           limit: limit,
           offset: offset,
         );
+        isLoading = true;
         list.addAll(result.pokemonDetails);
         offset = limit;
         limit += 15;
-        emit(PokedexInitialState(data: list));
+        emit(PokedexDataState(pokemonList: list));
       }
     } catch (ex) {
       emit(PokedexErrorState(exception: ex, data: list));
@@ -55,9 +56,12 @@ class PokedexBloc extends Bloc<PokedexEvent, PokedexState> {
 
     if (query.isNotEmpty) {
       final filteredList = _getSearchedPokemon(event, query);
-      return emit(PokedexInitialState(data: filteredList));
+      return emit(PokedexDataState(
+        pokemonList: list,
+        filteredList: filteredList,
+      ));
     }
-    return emit(PokedexInitialState(data: list));
+    return emit(PokedexDataState(pokemonList: list));
   }
 
   List<PokemonDetailsResponse> _getSearchedPokemon(

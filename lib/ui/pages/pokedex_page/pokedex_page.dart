@@ -12,6 +12,7 @@ class PokedexPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.colors.identityGroup.primary,
+      resizeToAvoidBottomInset: false,
       body: const SafeArea(
         child: CustomScrollView(
           physics: NeverScrollableScrollPhysics(),
