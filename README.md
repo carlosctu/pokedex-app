@@ -1,16 +1,55 @@
-# pokedex_flutter_app
+# Pokedex
 
-A new Flutter project.
+This project is a Pokedex application developed using Flutter. It utilizes the PokemonApi V2 as the data source and implements the BloC pattern for state management.
+
+## Features
+
+- View a list of Pokemon with their names, images, and types.
+- Search for a specific Pokemon by name.
+- View detailed information about a selected Pokemon, including its abilities, stats, and evolution chain.
+
+## Technologies Used
+
+- Flutter
+- [PokemonApi V2](https://pokeapi.co/)
+- BloC (Business Logic Component) for state management
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run this project locally, follow these steps:
 
-A few resources to get you started if this is your first Flutter project:
+1. Ensure that you have Flutter SDK installed on your machine. If not, refer to the [Flutter installation guide](https://flutter.dev/docs/get-started/install) for instructions.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Clone this repository to your local machine using the following command:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ```
+   git clone https://github.com/carlosctu/pokedex-app.git
+   ```
+
+3. Navigate to the project directory:
+
+   ```
+   cd pokedex-app
+   ```
+
+4. Run the following command to get all the required dependencies:
+
+   ```
+   ./reset.sh
+   ```
+
+   This script will automatically execute `flutter pub get` to fetch the necessary packages.
+
+5. Connect your device or start an emulator.
+
+6. Run the app using the following command:
+
+   ```
+   flutter run
+   ```
+
+   This command will build the app and launch it on your connected device or emulator.
+
+## Contributing
+
+Contributions to this project are welcome. Feel free to open issues and submit pull requests to improve the application.
