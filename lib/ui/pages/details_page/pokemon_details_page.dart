@@ -44,44 +44,47 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         bottom: false,
-        child: Stack(
-          children: [
-            PokemonInformation(
-              pokemonDetails: pokemonDetails,
-              pokemonColor: pokemonColor,
-            ),
-            const _PokeballBackgroundImage(),
-            _PokemonDetailsAppBar(
-              pokemonData: pokemonDetails,
-              theme: theme,
-            ),
-            Positioned(
-              top: 80,
-              child: Container(
-                height: 240,
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.topCenter,
-                child: Hero(
-                  tag: pokemonDetails.id,
-                  child: PageView.builder(
-                    controller: pageController,
-                    allowImplicitScrolling: true,
-                    itemCount: widget.args.data.length,
-                    onPageChanged: (value) {
-                      final newIndex = widget.args.pokemonId + value;
-                      pokemonDetails = widget.args.data[newIndex];
-                      setState(() {});
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      return Image.network(
-                        pokemonDetails.sprites.originalImage!,
-                      );
-                    },
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Stack(
+            children: [
+              PokemonInformation(
+                pokemonDetails: pokemonDetails,
+                pokemonColor: pokemonColor,
+              ),
+              const _PokeballBackgroundImage(),
+              _PokemonDetailsAppBar(
+                pokemonData: pokemonDetails,
+                theme: theme,
+              ),
+              Positioned(
+                top: 80,
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 3.5,
+                  width: MediaQuery.of(context).size.width,
+                  alignment: Alignment.topCenter,
+                  child: Hero(
+                    tag: pokemonDetails.id,
+                    child: PageView.builder(
+                      controller: pageController,
+                      allowImplicitScrolling: true,
+                      itemCount: widget.args.data.length,
+                      onPageChanged: (value) {
+                        final newIndex = widget.args.pokemonId + value;
+                        pokemonDetails = widget.args.data[newIndex];
+                        setState(() {});
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        return Image.network(
+                          pokemonDetails.sprites.originalImage!,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

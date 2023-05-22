@@ -31,7 +31,7 @@ class PokemonCard extends StatelessWidget {
         children: [
           _buildPokemonNumber(),
           _buildCardSecondaryBackground(),
-          _buildPokemonImage(),
+          _buildPokemonImage(context),
           _buildPokemonName(),
         ],
       ),
@@ -51,12 +51,12 @@ class PokemonCard extends StatelessWidget {
     );
   }
 
-  Widget _buildPokemonImage() {
+  Widget _buildPokemonImage(BuildContext context) {
     return Align(
       alignment: AlignmentDirectional.center,
       child: Image.network(
         pokemonImage,
-        height: 72,
+        height: MediaQuery.of(context).size.height / 12,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
           return Image.asset(

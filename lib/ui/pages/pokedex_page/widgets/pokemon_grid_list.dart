@@ -6,7 +6,6 @@ import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc.dart';
 import 'package:pokedex_flutter_app/domain/bloc/pokedex_bloc_event.dart';
 import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
 import 'package:pokedex_flutter_app/ui/pages/details_page/arguments/details_page_arguments.dart';
-import 'package:pokedex_flutter_app/ui/pages/details_page/pokemon_details_page.dart';
 import 'package:pokedex_flutter_app/ui/pages/pokedex_page/widgets/pokemon_card.dart';
 import 'package:pokedex_flutter_app/ui/routes/routes.dart';
 import 'package:pokedex_flutter_app/utils/extensions/extensions.dart';
