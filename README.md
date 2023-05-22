@@ -53,3 +53,11 @@ To run this project locally, follow these steps:
 ## Contributing
 
 Contributions to this project are welcome. Feel free to open issues and submit pull requests to improve the application.
+
+## Video
+
+
+
+https://github.com/carlosctu/pokedex-app/assets/72350887/f93e316a-188f-4c96-ba63-f5714cce3db5
+
+
