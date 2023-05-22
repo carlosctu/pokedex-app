@@ -8,9 +8,11 @@ import 'package:pokedex_flutter_app/utils/extensions/extensions.dart';
 
 class PokemonInformation extends StatelessWidget {
   final PokemonDetailsResponse pokemonDetails;
+  final Color pokemonColor;
   const PokemonInformation({
     super.key,
     required this.pokemonDetails,
+    required this.pokemonColor,
   });
 
   @override
@@ -29,6 +31,7 @@ class PokemonInformation extends StatelessWidget {
         children: [
           _PokemonTypesSection(
             types: pokemonDetails.types,
+            pokemonColor: pokemonColor,
           ),
           const SizedBox(height: 16),
           PokemonAboutSection(
@@ -39,6 +42,7 @@ class PokemonInformation extends StatelessWidget {
           PokemonStatsSection(
             theme: theme,
             pokemonDetails: pokemonDetails,
+            pokemonColor: pokemonColor,
           )
         ],
       ),
@@ -48,8 +52,10 @@ class PokemonInformation extends StatelessWidget {
 
 class _PokemonTypesSection extends StatelessWidget {
   final List<PokemonTypesList> types;
+  final Color pokemonColor;
   const _PokemonTypesSection({
     required this.types,
+    required this.pokemonColor,
   });
 
   @override
@@ -66,7 +72,9 @@ class _PokemonTypesSection extends StatelessWidget {
                 vertical: 4,
               ),
               decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(10)),
+                color: pokemonColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Text(
                 type.type?.name?.capitalizeFirstLetter() ?? '',
                 style: theme.typography.s2.copyWith(

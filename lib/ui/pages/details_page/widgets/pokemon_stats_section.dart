@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:poke_system/poke_system.dart';
+
 import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
 import 'package:pokedex_flutter_app/utils/extensions/extensions.dart';
 
 class PokemonStatsSection extends StatelessWidget {
   final PokeThemeData theme;
   final PokemonDetailsResponse pokemonDetails;
+  final Color pokemonColor;
 
   const PokemonStatsSection({
-    super.key,
+    Key? key,
     required this.theme,
     required this.pokemonDetails,
-  });
+    required this.pokemonColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +121,7 @@ class PokemonStatsSection extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 child: StatusBar(
                   progressValue: stat.baseStat!.toDouble(),
-                  statusColor: Colors.green,
+                  statusColor: pokemonColor,
                 ),
               ),
             )

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:poke_system/poke_system.dart';
 import 'package:pokedex_flutter_app/domain/entities/pokemon/pokemon_details_response.dart';
-import 'package:pokedex_flutter_app/ui/routes/routes.dart';
 import 'package:pokedex_flutter_app/ui/pages/details_page/arguments/details_page_arguments.dart';
 import 'package:pokedex_flutter_app/ui/pages/details_page/widgets/pokemon_information.dart';
+import 'package:pokedex_flutter_app/utils/config/pokemon_colors.dart';
 import 'package:pokedex_flutter_app/utils/extensions/extensions.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
@@ -35,15 +35,19 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final theme = PokeThemeData();
+    final pokemonColor = PokemonColors.getPokemonColorByType(
+      pokemonDetails.types[0].type?.name,
+    );
 
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: pokemonColor,
       body: SafeArea(
         bottom: false,
         child: Stack(
           children: [
             PokemonInformation(
               pokemonDetails: pokemonDetails,
+              pokemonColor: pokemonColor,
             ),
             const _PokeballBackgroundImage(),
             _PokemonDetailsAppBar(
